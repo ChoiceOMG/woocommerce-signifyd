@@ -1,0 +1,43 @@
+/**
+ * Signifyd order metabox styling.
+ *
+ * Layout only. Every rule is scoped under a .wc-signifyd-* class so nothing
+ * here can affect the rest of the order screen, and the buttons keep their
+ * native WordPress .button appearance rather than being restyled.
+ *
+ * Markup comes from WC_Signifyd_Admin::render_meta_box() and
+ * ::render_buttons().
+ *
+ * @package WC_Signifyd
+ */
+
+.wc-signifyd-box .wc-signifyd-score-line {
+	margin: 0 0 .5em;
+}
+
+/* The score is the one value worth reading at a glance, so it is set larger
+   than the surrounding detail lines. */
+.wc-signifyd-box .wc-signifyd-score {
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 1;
+}
+
+/* Supporting detail (disposition, team, status, timestamps) is set small to
+   keep the whole panel within the narrow side column. */
+.wc-signifyd-box .wc-signifyd-details {
+	font-size: 11px;
+	line-height: 1.6;
+	margin: 0 0 .75em;
+}
+
+/* Buttons wrap onto multiple rows in the side column, so they need vertical
+   spacing as well as horizontal. */
+.wc-signifyd-actions .button {
+	margin: 0 4px 4px 0;
+}
+
+/* Applied by admin.js to the clicked button while its request is in flight. */
+.wc-signifyd-actions .wc-signifyd-busy {
+	opacity: .6;
+}

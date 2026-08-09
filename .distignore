@@ -1,0 +1,44 @@
+# Files excluded from the distributed plugin package (WordPress.org SVN and
+# the release zip). Everything here is development or contributor material
+# that WordPress.org's Plugin Check flags if shipped.
+#
+# Build a clean package with:
+#   wp dist-archive . ../fraud-screening-for-woocommerce-with-signifyd.zip
+#
+# Keeping this in sync with .gitignore is not required; the two answer
+# different questions. .gitignore is "never commit this", .distignore is
+# "committed, but not shipped to users".
+
+# Version control and editor state
+.git
+.gitignore
+.gitattributes
+.github
+.svn
+.idea
+.vscode
+.DS_Store
+
+# Agent and session tooling
+.remember
+.claude
+AGENTS.md
+
+# Contributor documentation. Lives in the repo, not in the shipped plugin:
+# WordPress.org renders readme.txt, and Plugin Check flags unexpected
+# markdown in the plugin root.
+CONTRIBUTING.md
+docs
+
+# Build and dependency artifacts
+node_modules
+vendor
+composer.json
+composer.lock
+package.json
+package-lock.json
+phpcs.xml
+phpcs.xml.dist
+.distignore
+build.sh
+dist

@@ -1,0 +1,41 @@
+# Logs and runtime state - this plugin should never write these, but block
+# them at the repo boundary too.
+*.log
+logs/
+*.sql
+*.sql.gz
+
+# Credentials and environment
+.env
+.env.*
+wp-config.php
+*.key
+*.pem
+
+# OS and editor cruft
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Dependency and build artifacts
+vendor/
+node_modules/
+composer.lock
+
+# Packaging output
+*.zip
+build/
+dist/
+
+# Agent/session tooling state. Never belongs in a released plugin.
+.remember/
+.claude/
+*.pid
+
+# WordPress.org SVN working copy, if you deploy that way
+.svn/
+
+# Build output
+/dist/
