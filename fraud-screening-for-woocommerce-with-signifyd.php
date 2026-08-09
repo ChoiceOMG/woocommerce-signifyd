@@ -3,7 +3,7 @@
  * Plugin Name:       Fraud Screening for WooCommerce with Signifyd
  * Plugin URI:        https://github.com/choiceomg/woocommerce-signifyd
  * Description:       Fraud screening for WooCommerce via Signifyd. Creates cases server-side, receives decisions by signed webhook, and lets staff close cases or purchase a guarantee from the order screen.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Choice OMG
@@ -12,6 +12,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       fraud-screening-for-woocommerce-with-signifyd
  * Domain Path:       /languages
+ * Requires Plugins:  woocommerce
  * WC requires at least: 6.0
  * WC tested up to:   11.0
  *
@@ -21,7 +22,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /** Plugin version, also used to cache-bust the admin CSS and JS. */
-define( 'WC_SIGNIFYD_VERSION', '1.1.0' );
+define( 'WC_SIGNIFYD_VERSION', '1.2.0' );
 
 /** Absolute path to this file, required by the HPOS compatibility declaration. */
 define( 'WC_SIGNIFYD_FILE', __FILE__ );
@@ -116,6 +117,15 @@ final class WC_Signifyd {
 	 *
 	 * Hooked to init rather than called directly, because WordPress requires
 	 * the current locale to be resolved before translations are registered.
+	 *
+	 * WordPress.org's Plugin Check flags this call as discouraged since WP
+	 * 4.6, and for WordPress.org installs it is indeed redundant: language
+	 * packs from translate.wordpress.org load automatically. It is kept for
+	 * installs from GitHub or a manual zip, where a site owner dropping their
+	 * own .mo into languages/ still relies on this call to pick it up. The
+	 * package ships only a .pot, so the call loads nothing by default and
+	 * costs nothing. Removing it would trade a working capability for one
+	 * fewer non-blocking warning.
 	 */
 	public static function load_textdomain() {
 		load_plugin_textdomain( 'fraud-screening-for-woocommerce-with-signifyd', false, dirname( plugin_basename( WC_SIGNIFYD_FILE ) ) . '/languages' );

@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.2.0 (2026-08-08)
 
 - Renamed the plugin to "Fraud Screening for WooCommerce with Signifyd" for
   WordPress.org compliance. Directory listing rules prohibit leading a plugin
