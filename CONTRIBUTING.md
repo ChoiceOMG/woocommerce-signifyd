@@ -21,7 +21,7 @@ You need:
   live Signifyd account" below.
 
 To install the plugin for development, clone or copy this repository into
-`wp-content/plugins/fraud-screening-for-woocommerce-with-signifyd/` and activate it from the Plugins screen.
+`wp-content/plugins/fraud-screening-with-signifyd/` and activate it from the Plugins screen.
 There is no build step and no Composer or npm dependency to install; the
 plugin is plain PHP, JS, and CSS.
 
@@ -32,7 +32,7 @@ Follow WordPress-Extra (WPCS) conventions:
 - Tabs for indentation, not spaces.
 - Yoda-optional but consistent: match whatever the surrounding file already
   does rather than mixing styles within a file.
-- Every translatable string uses the `fraud-screening-for-woocommerce-with-signifyd` text domain, is a literal
+- Every translatable string uses the `fraud-screening-with-signifyd` text domain, is a literal
   (no concatenation or interpolation inside `__()` / `_e()` / `esc_html__()`),
   and gets a `/* translators: ... */` comment immediately above it if it
   contains a `%s` / `%d` / numbered placeholder.
@@ -46,7 +46,7 @@ and the [WordPress Coding Standards](https://github.com/WordPress/WordPress-Codi
 ruleset installed, you can lint against them directly:
 
 ```
-phpcs --standard=WordPress-Extra includes/ fraud-screening-for-woocommerce-with-signifyd.php
+phpcs --standard=WordPress-Extra includes/ fraud-screening-with-signifyd.php
 ```
 
 CI does not enforce this ruleset yet, so matching the existing style by eye

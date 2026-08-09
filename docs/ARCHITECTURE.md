@@ -12,7 +12,7 @@ see [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## File-by-file responsibility
 
-- **`fraud-screening-for-woocommerce-with-signifyd.php`**: Bootstrap. Defines the plugin constants, declares HPOS
+- **`fraud-screening-with-signifyd.php`**: Bootstrap. Defines the plugin constants, declares HPOS
   (custom order tables) compatibility on `before_woocommerce_init`, and loads
   the rest of the plugin on `plugins_loaded` once WooCommerce is confirmed
   active. Holds the shared `WC_Signifyd_API` instance behind `WC_Signifyd::api()`

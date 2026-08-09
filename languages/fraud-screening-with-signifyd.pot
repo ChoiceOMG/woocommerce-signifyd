@@ -2,8 +2,8 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Fraud Screening for WooCommerce with Signifyd 1.1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fraud-screening-for-woocommerce-with-signifyd\n"
+"Project-Id-Version: Fraud Screening with Signifyd 1.2.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fraud-screening-with-signifyd\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12,42 +12,42 @@ msgstr ""
 "POT-Creation-Date: 2026-08-09T00:36:35+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: fraud-screening-for-woocommerce-with-signifyd\n"
+"X-Domain: fraud-screening-with-signifyd\n"
 
 #. Plugin Name of the plugin
-#: fraud-screening-for-woocommerce-with-signifyd.php
-msgid "Fraud Screening for WooCommerce with Signifyd"
+#: fraud-screening-with-signifyd.php
+msgid "Fraud Screening with Signifyd"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: fraud-screening-for-woocommerce-with-signifyd.php
+#: fraud-screening-with-signifyd.php
 msgid "https://github.com/choiceomg/woocommerce-signifyd"
 msgstr ""
 
 #. Description of the plugin
-#: fraud-screening-for-woocommerce-with-signifyd.php
+#: fraud-screening-with-signifyd.php
 msgid "Fraud screening for WooCommerce via Signifyd. Creates cases server-side, receives decisions by signed webhook, and lets staff close cases or purchase a guarantee from the order screen."
 msgstr ""
 
 #. Author of the plugin
-#: fraud-screening-for-woocommerce-with-signifyd.php
+#: fraud-screening-with-signifyd.php
 msgid "Choice OMG"
 msgstr ""
 
 #. Author URI of the plugin
-#: fraud-screening-for-woocommerce-with-signifyd.php
+#: fraud-screening-with-signifyd.php
 msgid "https://choice.marketing"
 msgstr ""
 
-#: fraud-screening-for-woocommerce-with-signifyd.php:149
+#: fraud-screening-with-signifyd.php:149
 msgid "Signifyd for WooCommerce requires WooCommerce to be installed and active."
 msgstr ""
 
-#: fraud-screening-for-woocommerce-with-signifyd.php:175
+#: fraud-screening-with-signifyd.php:175
 msgid "Signifyd for WooCommerce has no API key configured, so no cases are being created."
 msgstr ""
 
-#: fraud-screening-for-woocommerce-with-signifyd.php:177
+#: fraud-screening-with-signifyd.php:177
 msgid "Add your API key"
 msgstr ""
 

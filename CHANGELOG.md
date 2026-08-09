@@ -2,11 +2,11 @@
 
 ## 1.2.0 (2026-08-08)
 
-- Renamed the plugin to "Fraud Screening for WooCommerce with Signifyd" for
+- Renamed the plugin to "Fraud Screening with Signifyd" for
   WordPress.org compliance. Directory listing rules prohibit leading a plugin
   slug with someone else's trademark, so `signifyd-for-woocommerce` would have
   been rejected or force-renamed at review. The text domain moved to the
-  matching `fraud-screening-for-woocommerce-with-signifyd` (WordPress.org
+  matching `fraud-screening-with-signifyd` (WordPress.org
   requires text domain and slug to be identical for language-pack delivery),
   and the main plugin file was renamed to match. Internal naming is
   deliberately unchanged: classes stay `WC_Signifyd_*`, hooks and options stay
@@ -16,7 +16,7 @@
   WordPress.org's Plugin Check reports hidden files as an error and
   unexpected root markdown as a warning, both of which the raw repository
   tree would have triggered.
-- Added `languages/fraud-screening-for-woocommerce-with-signifyd.pot`
+- Added `languages/fraud-screening-with-signifyd.pot`
   (55 strings). The plugin header has always declared `Domain Path:
   /languages`, but no template was shipped.
 - Refreshed compatibility metadata after testing: `Tested up to: 7.0` (was

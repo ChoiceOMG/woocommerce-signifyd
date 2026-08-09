@@ -14,7 +14,7 @@
 #
 set -euo pipefail
 
-SLUG="fraud-screening-for-woocommerce-with-signifyd"
+SLUG="fraud-screening-with-signifyd"
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 OUT="${1:-$SRC/dist}"
 

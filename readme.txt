@@ -1,4 +1,4 @@
-=== Fraud Screening for WooCommerce with Signifyd ===
+=== Fraud Screening with Signifyd ===
 Contributors: choiceomg
 Tags: woocommerce, signifyd, fraud, chargebacks, fraud prevention
 Requires at least: 6.0
@@ -116,7 +116,7 @@ and similar) before enabling this plugin on a live store.
 
 == Installation ==
 
-1. Upload the plugin to `wp-content/plugins/fraud-screening-for-woocommerce-with-signifyd/`, or install it from the Plugins screen.
+1. Upload the plugin to `wp-content/plugins/fraud-screening-with-signifyd/`, or install it from the Plugins screen.
 2. Activate it through the Plugins screen. WooCommerce must be active.
 3. Go to **WooCommerce > Settings > Signifyd** and enter your Signifyd team API key.
 4. On the same screen, choose which payment gateways are screened and which order event creates the case.

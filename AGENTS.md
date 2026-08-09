@@ -26,7 +26,7 @@ before making any change that touches more than one file.
 - Classes: `WC_Signifyd_*` (e.g. `WC_Signifyd_Orders`, `WC_Signifyd_API`).
 - Hooks, options, and the AJAX nonce action: prefixed `wc_signifyd_`
   (e.g. `wc_signifyd_case_updated`, `wc_signifyd_api_key`).
-- Text domain: `fraud-screening-for-woocommerce-with-signifyd`, on every
+- Text domain: `fraud-screening-with-signifyd`, on every
   translatable string. It is long because WordPress.org requires the text
   domain to equal the plugin slug for language-pack delivery, and the slug
   has to lead with a descriptive word rather than the Signifyd trademark.
@@ -35,7 +35,7 @@ before making any change that touches more than one file.
   the literal meta-key string, when reading or writing them from another file.
 
 Two naming systems coexist here on purpose. The **public slug** is the long
-`fraud-screening-for-woocommerce-with-signifyd`, used only for the plugin
+`fraud-screening-with-signifyd`, used only for the plugin
 folder, the main file, and the text domain. Everything **internal** keeps the
 short `wc_signifyd_` / `WC_Signifyd_` / `wc-signifyd` prefix: class names,
 hooks, options, the REST namespace (`wc-signifyd/v1`), asset handles, CSS

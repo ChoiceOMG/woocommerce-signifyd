@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Fraud Screening for WooCommerce with Signifyd
+ * Plugin Name:       Fraud Screening with Signifyd
  * Plugin URI:        https://github.com/choiceomg/woocommerce-signifyd
  * Description:       Fraud screening for WooCommerce via Signifyd. Creates cases server-side, receives decisions by signed webhook, and lets staff close cases or purchase a guarantee from the order screen.
  * Version:           1.2.0
@@ -10,7 +10,7 @@
  * Author URI:        https://choice.marketing
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       fraud-screening-for-woocommerce-with-signifyd
+ * Text Domain:       fraud-screening-with-signifyd
  * Domain Path:       /languages
  * Requires Plugins:  woocommerce
  * WC requires at least: 6.0
@@ -128,7 +128,7 @@ final class WC_Signifyd {
 	 * fewer non-blocking warning.
 	 */
 	public static function load_textdomain() {
-		load_plugin_textdomain( 'fraud-screening-for-woocommerce-with-signifyd', false, dirname( plugin_basename( WC_SIGNIFYD_FILE ) ) . '/languages' );
+		load_plugin_textdomain( 'fraud-screening-with-signifyd', false, dirname( plugin_basename( WC_SIGNIFYD_FILE ) ) . '/languages' );
 	}
 
 	/**
@@ -156,7 +156,7 @@ final class WC_Signifyd {
 	 */
 	public static function notice_missing_woocommerce() {
 		echo '<div class="notice notice-error"><p>';
-		esc_html_e( 'Signifyd for WooCommerce requires WooCommerce to be installed and active.', 'fraud-screening-for-woocommerce-with-signifyd' );
+		esc_html_e( 'Signifyd for WooCommerce requires WooCommerce to be installed and active.', 'fraud-screening-with-signifyd' );
 		echo '</p></div>';
 	}
 
@@ -182,9 +182,9 @@ final class WC_Signifyd {
 
 		printf(
 			'<div class="notice notice-warning"><p>%s <a href="%s">%s</a></p></div>',
-			esc_html__( 'Signifyd for WooCommerce has no API key configured, so no cases are being created.', 'fraud-screening-for-woocommerce-with-signifyd' ),
+			esc_html__( 'Signifyd for WooCommerce has no API key configured, so no cases are being created.', 'fraud-screening-with-signifyd' ),
 			esc_url( admin_url( 'admin.php?page=wc-settings&tab=signifyd' ) ),
-			esc_html__( 'Add your API key', 'fraud-screening-for-woocommerce-with-signifyd' )
+			esc_html__( 'Add your API key', 'fraud-screening-with-signifyd' )
 		);
 	}
 }

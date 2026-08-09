@@ -32,7 +32,7 @@ Additional contributors can be added to the line later, comma-separated.
    ```
    ./build.sh
    ```
-   This produces `dist/fraud-screening-for-woocommerce-with-signifyd.zip`
+   This produces `dist/fraud-screening-with-signifyd.zip`
    (roughly 48 KB, 16 files). The script refuses to finish if any hidden file
    reaches the package, because WordPress.org rejects those outright.
 3. Upload the zip at <https://wordpress.org/plugins/developers/add/>.
@@ -101,7 +101,7 @@ listing, which suppresses installs.
    existing installs.
 3. Regenerate the translation template if any string changed:
    ```
-   wp i18n make-pot . languages/fraud-screening-for-woocommerce-with-signifyd.pot
+   wp i18n make-pot . languages/fraud-screening-with-signifyd.pot
    ```
 4. Confirm the hook reference table in `docs/ARCHITECTURE.md` still matches
    the code (see `AGENTS.md` for why this matters).

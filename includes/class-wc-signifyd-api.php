@@ -99,7 +99,7 @@ class WC_Signifyd_API {
 		$this->last_error = '';
 
 		if ( ! $this->has_key() ) {
-			$this->last_error = __( 'No Signifyd API key configured.', 'fraud-screening-for-woocommerce-with-signifyd' );
+			$this->last_error = __( 'No Signifyd API key configured.', 'fraud-screening-with-signifyd' );
 			return null;
 		}
 
@@ -145,7 +145,7 @@ class WC_Signifyd_API {
 
 		$decoded = json_decode( $raw, true );
 		if ( ! is_array( $decoded ) ) {
-			$this->last_error = __( 'Malformed JSON in Signifyd response.', 'fraud-screening-for-woocommerce-with-signifyd' );
+			$this->last_error = __( 'Malformed JSON in Signifyd response.', 'fraud-screening-with-signifyd' );
 			WC_Signifyd_Logger::error( $this->last_error );
 			return null;
 		}
