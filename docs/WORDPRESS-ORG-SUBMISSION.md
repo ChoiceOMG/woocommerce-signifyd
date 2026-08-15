@@ -4,26 +4,47 @@ The plugin passes WordPress.org's Plugin Check with no errors and is packaged
 for submission. One prerequisite is outstanding and has to be done by a human
 before anything can be uploaded: see "Blocker" below.
 
-## Blocker: the Contributors username does not exist
+## Identity: what has to match
 
-`readme.txt` declares `Contributors: choiceomg`, and there is no WordPress.org
-account with that username (`wordpress.org/support/users/choiceomg/` returns
-404, checked 2026-08-08).
+The account that submits the plugin becomes its permanent owner and receives
+the SVN credentials, so these values are settled in advance and must agree:
 
-`Contributors` must list real WordPress.org usernames. An unrecognised name
-leaves the listing with no author attribution and invites a reviewer query.
-More importantly, the account that submits the plugin becomes its owner, so
-this needs deciding before upload rather than after.
+| Field | Value |
+|---|---|
+| WordPress.org username | `choiceomg` |
+| WordPress.org account email | `plugins@choice.marketing` |
+| `readme.txt` `Contributors:` | `choiceomg` |
+| Plugin header `Author:` | Choice OMG |
+| Plugin header `Author URI:` | `https://choice.marketing` |
+| Plugin header `Plugin URI:` | `https://github.com/ChoiceOMG/woocommerce-signifyd` |
 
-To resolve, either:
+The account email sits on `choice.marketing`, the same domain as `Author URI`,
+and is a role address rather than an individual's mailbox so that ownership of
+the listing survives staff changes. `choice.marketing` mail is Google
+Workspace, so `plugins@` is a group or alias delivering to whoever should read
+reviewer correspondence.
 
-1. Register `choiceomg` at <https://login.wordpress.org/register>, then submit
-   from that account. Preferred: the plugin is owned by an organisation
-   account rather than an individual, so ownership survives staff changes.
-2. Submit from an existing personal WordPress.org account and change the
-   `Contributors` line to that username.
+`Plugin URI` uses the canonical `ChoiceOMG` capitalisation. GitHub redirects
+the lowercase form, but the header is copied verbatim into the translation
+template and the directory listing, so it should not depend on a redirect.
 
-Additional contributors can be added to the line later, comma-separated.
+## Blocker: the WordPress.org account does not exist yet
+
+There is no account under `choiceomg`; `profiles.wordpress.org/choiceomg/`
+returns 404 (rechecked 2026-08-15, along with `choicemarketing`,
+`peterjaffray`, `choice-omg`, and `pjaffray`, all also free). Nothing can be
+uploaded until it exists.
+
+Two steps, both human-only (each needs an interactive confirmation that
+cannot be scripted):
+
+1. Create `plugins@choice.marketing` in Google Workspace admin as a group or
+   alias delivering to the person who should receive reviewer mail.
+2. Register `choiceomg` at <https://login.wordpress.org/register> using that
+   address, and confirm the emailed activation link.
+
+Additional contributors can be added to the `Contributors` line later,
+comma-separated.
 
 ## Submission steps
 
@@ -86,6 +107,11 @@ showing a score and disposition, and the settings tab. They go in an
 **Banner and icon.** Also live in the SVN `assets/` directory. A listing
 without them renders a plain grey placeholder. Sizes: `banner-772x250.png`
 and `icon-256x256.png`, with optional retina variants.
+
+Do not confuse that directory with this repository's `assets/`, which holds
+the admin CSS and JS the plugin actually loads and does ship inside the
+package. The SVN `assets/` is listing artwork only, lives beside `trunk/`
+rather than inside it, and never reaches an installed site.
 
 **A `Tested up to` refresh each WordPress release.** A plugin more than two
 major versions behind gets a "may no longer be maintained" notice on its
