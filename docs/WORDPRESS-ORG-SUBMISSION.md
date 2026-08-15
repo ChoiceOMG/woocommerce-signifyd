@@ -44,9 +44,14 @@ returns 404 (rechecked 2026-08-15, along with `choicemarketing`,
 `peterjaffray`, `choice-omg`, and `pjaffray`, all also free). Nothing can be
 uploaded until it exists.
 
-The mailbox that will receive the activation mail,
-`wordpress@systems.choice.marketing`, exists as of 2026-08-15 and has been
-delivery-tested. What remains is registering `choiceomg` at
+Both halves of the identity exist as of 2026-08-15. The mailbox that will
+receive the activation mail, `wordpress@systems.choice.marketing`, is live on
+Mailu and has been delivery-tested end to end, including an external inbound
+message through SES that passed SPF, DKIM, and DMARC. The matching Google
+Cloud Identity user (`WordPress Choice OMG`, org unit `/systems`) exists for
+platforms that require a Google sign-in; it carries no mailbox, as intended.
+
+What remains is registering `choiceomg` at
 <https://login.wordpress.org/register> using that address and confirming the
 emailed activation link, which needs a human because the confirmation cannot
 be scripted.
