@@ -133,6 +133,15 @@ above.
 
 *`load_plugin_textdomain()`.* Removed. See below.
 
+**2026-08-15, 1.2.2 uploaded** through the "Add your plugin" page as
+`jaffray`, and the reply sent to the review thread.
+
+Uploading a renamed package does not rename the permalink. The upload form
+confirms the new display name, which reads like the rename took effect, but
+the slug stays whatever it was at first submission until a reviewer changes
+it by hand. The request has to be made in words in the reply, and it is the
+last chance: permalinks cannot be altered after approval.
+
 ## What reviewers may still raise
 
 **The external service disclosure.** `readme.txt` has an `== External
