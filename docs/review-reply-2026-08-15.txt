@@ -1,0 +1,26 @@
+Reply to: plugins@wordpress.org
+Thread:   [WordPress Plugin Directory] Review in Progress: Fraud Screening with Signifyd
+Review ID: P0TDX352313HGN
+
+---
+
+Hi,
+
+Updated files uploaded.
+
+Permalink change requested: please set the slug to
+riskloom-fraud-screening-for-signifyd
+
+The plugin is now named "Riskloom Fraud Screening for Signifyd". "Riskloom"
+is a coined term with no existing use as a plugin, product, or company.
+
+Context that may help the review: Signifyd publishes no official WooCommerce
+integration, so this is an independent client for their V2 Cases API, and we
+are not affiliated with Signifyd. The REST route registers
+permission_callback => __return_true because Signifyd's webhook cannot
+present a nonce or cookie; authentication is the HMAC-SHA256 signature
+verification inside the handler, and the reasoning is commented at the call
+site.
+
+Thanks,
+Peter
