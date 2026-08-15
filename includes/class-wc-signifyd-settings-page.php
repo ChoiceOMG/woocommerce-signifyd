@@ -32,7 +32,7 @@ class WC_Signifyd_Settings_Page extends WC_Settings_Page {
 	 */
 	public function __construct() {
 		$this->id    = 'signifyd';
-		$this->label = __( 'Signifyd', 'fraud-screening-with-signifyd' );
+		$this->label = __( 'Signifyd', 'riskloom-fraud-screening-for-signifyd' );
 		parent::__construct();
 	}
 
@@ -51,24 +51,24 @@ class WC_Signifyd_Settings_Page extends WC_Settings_Page {
 			}
 		}
 
-		$key_desc = __( 'Your Signifyd team API key. Find it in the Signifyd console under Settings > Teams.', 'fraud-screening-with-signifyd' );
+		$key_desc = __( 'Your Signifyd team API key. Find it in the Signifyd console under Settings > Teams.', 'riskloom-fraud-screening-for-signifyd' );
 		if ( WC_Signifyd_Settings::key_is_from_constant() ) {
-			$key_desc = __( 'Currently supplied by the WC_SIGNIFYD_API_KEY constant in wp-config.php, which overrides this field.', 'fraud-screening-with-signifyd' );
+			$key_desc = __( 'Currently supplied by the WC_SIGNIFYD_API_KEY constant in wp-config.php, which overrides this field.', 'riskloom-fraud-screening-for-signifyd' );
 		}
 
 		$settings = array(
 			array(
-				'title' => __( 'Signifyd', 'fraud-screening-with-signifyd' ),
+				'title' => __( 'Signifyd', 'riskloom-fraud-screening-for-signifyd' ),
 				'type'  => 'title',
 				'desc'  => sprintf(
 					/* translators: %s: webhook URL */
-					__( 'Fraud screening for WooCommerce. Register this webhook URL in the Signifyd console for the Case Creation, Case Rescore, Case Review and Guarantee Completion events: <code>%s</code>', 'fraud-screening-with-signifyd' ),
+					__( 'Fraud screening for WooCommerce. Register this webhook URL in the Signifyd console for the Case Creation, Case Rescore, Case Review and Guarantee Completion events: <code>%s</code>', 'riskloom-fraud-screening-for-signifyd' ),
 					esc_html( WC_Signifyd_Settings::webhook_url() )
 				),
 				'id'    => 'wc_signifyd_options',
 			),
 			array(
-				'title'    => __( 'API key', 'fraud-screening-with-signifyd' ),
+				'title'    => __( 'API key', 'riskloom-fraud-screening-for-signifyd' ),
 				'desc'     => $key_desc,
 				'id'       => WC_Signifyd_Settings::OPTION_KEY,
 				'type'     => 'password',
@@ -79,8 +79,8 @@ class WC_Signifyd_Settings_Page extends WC_Settings_Page {
 					: array(),
 			),
 			array(
-				'title'   => __( 'Screened payment methods', 'fraud-screening-with-signifyd' ),
-				'desc'    => __( 'Only orders paid with these gateways are sent to Signifyd. Credit card gateways only.', 'fraud-screening-with-signifyd' ),
+				'title'   => __( 'Screened payment methods', 'riskloom-fraud-screening-for-signifyd' ),
+				'desc'    => __( 'Only orders paid with these gateways are sent to Signifyd. Credit card gateways only.', 'riskloom-fraud-screening-for-signifyd' ),
 				'id'      => WC_Signifyd_Settings::OPTION_ELIGIBLE_GWS,
 				'type'    => 'multiselect',
 				'class'   => 'wc-enhanced-select',
@@ -89,13 +89,13 @@ class WC_Signifyd_Settings_Page extends WC_Settings_Page {
 				'desc_tip' => true,
 			),
 			array(
-				'title'   => __( 'Create cases on', 'fraud-screening-with-signifyd' ),
-				'desc'    => __( 'Which order event submits the case. Payment complete is recommended.', 'fraud-screening-with-signifyd' ),
+				'title'   => __( 'Create cases on', 'riskloom-fraud-screening-for-signifyd' ),
+				'desc'    => __( 'Which order event submits the case. Payment complete is recommended.', 'riskloom-fraud-screening-for-signifyd' ),
 				'id'      => WC_Signifyd_Settings::OPTION_CREATE_ON,
 				'type'    => 'select',
 				'options' => array(
-					'payment_complete' => __( 'Payment complete', 'fraud-screening-with-signifyd' ),
-					'processing'       => __( 'Order status: processing', 'fraud-screening-with-signifyd' ),
+					'payment_complete' => __( 'Payment complete', 'riskloom-fraud-screening-for-signifyd' ),
+					'processing'       => __( 'Order status: processing', 'riskloom-fraud-screening-for-signifyd' ),
 				),
 				'default'  => 'payment_complete',
 				'desc_tip' => true,

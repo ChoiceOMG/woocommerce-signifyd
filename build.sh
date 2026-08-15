@@ -14,7 +14,7 @@
 #
 set -euo pipefail
 
-SLUG="fraud-screening-with-signifyd"
+SLUG="riskloom-fraud-screening-for-signifyd"
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 OUT="${1:-$SRC/dist}"
 

@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name:       Fraud Screening with Signifyd
+ * Plugin Name:       Riskloom Fraud Screening for Signifyd
  * Plugin URI:        https://github.com/ChoiceOMG/woocommerce-signifyd
  * Description:       Fraud screening for WooCommerce via Signifyd. Creates cases server-side, receives decisions by signed webhook, and lets staff close cases or purchase a guarantee from the order screen.
- * Version:           1.2.1
+ * Version:           1.2.2
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Choice OMG
  * Author URI:        https://choice.marketing
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       fraud-screening-with-signifyd
+ * Text Domain:       riskloom-fraud-screening-for-signifyd
  * Domain Path:       /languages
  * Requires Plugins:  woocommerce
  * WC requires at least: 6.0
@@ -22,7 +22,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /** Plugin version, also used to cache-bust the admin CSS and JS. */
-define( 'WC_SIGNIFYD_VERSION', '1.2.1' );
+define( 'WC_SIGNIFYD_VERSION', '1.2.2' );
 
 /** Absolute path to this file, required by the HPOS compatibility declaration. */
 define( 'WC_SIGNIFYD_FILE', __FILE__ );
@@ -108,28 +108,18 @@ final class WC_Signifyd {
 			WC_Signifyd_Admin::init();
 			add_action( 'admin_notices', array( __CLASS__, 'notice_missing_key' ) );
 		}
-
-		add_action( 'init', array( __CLASS__, 'load_textdomain' ) );
 	}
 
-	/**
-	 * Load translations from the bundled languages directory.
+	/*
+	 * There is deliberately no load_plugin_textdomain() call here.
 	 *
-	 * Hooked to init rather than called directly, because WordPress requires
-	 * the current locale to be resolved before translations are registered.
-	 *
-	 * WordPress.org's Plugin Check flags this call as discouraged since WP
-	 * 4.6, and for WordPress.org installs it is indeed redundant: language
-	 * packs from translate.wordpress.org load automatically. It is kept for
-	 * installs from GitHub or a manual zip, where a site owner dropping their
-	 * own .mo into languages/ still relies on this call to pick it up. The
-	 * package ships only a .pot, so the call loads nothing by default and
-	 * costs nothing. Removing it would trade a working capability for one
-	 * fewer non-blocking warning.
+	 * WordPress has loaded translations just in time since 4.6, resolving
+	 * them from the Domain Path header for manual installs and from language
+	 * packs for directory installs. This plugin requires 6.0, so the call
+	 * could never reach a version that needed it. An earlier release carried
+	 * it for the manual-install case; that reasoning was wrong, because
+	 * just-in-time loading covers a site owner's own .mo in languages/ too.
 	 */
-	public static function load_textdomain() {
-		load_plugin_textdomain( 'fraud-screening-with-signifyd', false, dirname( plugin_basename( WC_SIGNIFYD_FILE ) ) . '/languages' );
-	}
 
 	/**
 	 * Shared API client, constructed on first use.
@@ -156,7 +146,7 @@ final class WC_Signifyd {
 	 */
 	public static function notice_missing_woocommerce() {
 		echo '<div class="notice notice-error"><p>';
-		esc_html_e( 'Fraud Screening with Signifyd requires WooCommerce to be installed and active.', 'fraud-screening-with-signifyd' );
+		esc_html_e( 'Riskloom Fraud Screening for Signifyd requires WooCommerce to be installed and active.', 'riskloom-fraud-screening-for-signifyd' );
 		echo '</p></div>';
 	}
 
@@ -182,9 +172,9 @@ final class WC_Signifyd {
 
 		printf(
 			'<div class="notice notice-warning"><p>%s <a href="%s">%s</a></p></div>',
-			esc_html__( 'Fraud Screening with Signifyd has no API key configured, so no cases are being created.', 'fraud-screening-with-signifyd' ),
+			esc_html__( 'Riskloom Fraud Screening for Signifyd has no API key configured, so no cases are being created.', 'riskloom-fraud-screening-for-signifyd' ),
 			esc_url( admin_url( 'admin.php?page=wc-settings&tab=signifyd' ) ),
-			esc_html__( 'Add your API key', 'fraud-screening-with-signifyd' )
+			esc_html__( 'Add your API key', 'riskloom-fraud-screening-for-signifyd' )
 		);
 	}
 }

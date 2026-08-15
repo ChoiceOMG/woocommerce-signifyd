@@ -176,7 +176,7 @@ class WC_Signifyd_Orders {
 				$order->add_order_note(
 					sprintf(
 						/* translators: %s: Signifyd case id */
-						__( 'Signifyd case %s created.', 'fraud-screening-with-signifyd' ),
+						__( 'Signifyd case %s created.', 'riskloom-fraud-screening-for-signifyd' ),
 						$investigation_id
 					)
 				);
@@ -276,9 +276,9 @@ class WC_Signifyd_Orders {
 			$order->add_order_note(
 				sprintf(
 					/* translators: 1: disposition, 2: score */
-					__( 'Signifyd: guarantee disposition %1$s (score %2$s).', 'fraud-screening-with-signifyd' ),
+					__( 'Signifyd: guarantee disposition %1$s (score %2$s).', 'riskloom-fraud-screening-for-signifyd' ),
 					$disposition,
-					$score !== '' ? $score : __( 'n/a', 'fraud-screening-with-signifyd' )
+					$score !== '' ? $score : __( 'n/a', 'riskloom-fraud-screening-for-signifyd' )
 				)
 			);
 		}

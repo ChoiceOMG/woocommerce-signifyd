@@ -1,4 +1,4 @@
-# Fraud Screening with Signifyd
+# Riskloom Fraud Screening for Signifyd
 
 Fraud screening for WooCommerce via [Signifyd](https://www.signifyd.com/). Creates a case
 server-side after payment, receives the decision back over a signed webhook, and gives
@@ -27,7 +27,7 @@ your Signifyd account team if you're unsure which API version your credentials u
 
 ## Installation
 
-1. Copy this plugin into `wp-content/plugins/fraud-screening-with-signifyd/` and activate it.
+1. Copy this plugin into `wp-content/plugins/riskloom-fraud-screening-for-signifyd/` and activate it.
 2. Go to **WooCommerce > Settings > Signifyd** and enter your Signifyd team API key,
    or define it in `wp-config.php` instead (see below).
 3. In the same settings screen, choose which payment gateways should be screened

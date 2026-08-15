@@ -1,29 +1,39 @@
 # WordPress.org submission
 
-The plugin is ready to upload. Version 1.2.1 passes Plugin Check with zero
-errors and one known warning, the submitting account exists, and the package
-builds clean.
+The plugin was submitted on 2026-08-14 and is in review. Version 1.2.2
+answers the pre-review feedback and passes Plugin Check with zero errors and
+zero warnings. See "Review history" for what was raised and how it was
+resolved.
 
 ## Identity: what has to match
 
 The account that submits the plugin becomes its permanent owner and receives
-the SVN credentials, so these values are settled in advance and must agree:
+the SVN credentials, so these values must agree:
 
 | Field | Value |
 |---|---|
-| WordPress.org username | `choiceomg` |
-| WordPress.org account email | `wordpress@systems.choice.marketing` |
-| `readme.txt` `Contributors:` | `choiceomg` |
+| Plugin name | Riskloom Fraud Screening for Signifyd |
+| Slug | `riskloom-fraud-screening-for-signifyd` |
+| Owning WordPress.org account | `jaffray` |
+| Company WordPress.org account | `choiceomg` |
+| `readme.txt` `Contributors:` | `jaffray, choiceomg` |
 | Plugin header `Author:` | Choice OMG |
 | Plugin header `Author URI:` | `https://choice.marketing` |
 | Plugin header `Plugin URI:` | `https://github.com/ChoiceOMG/woocommerce-signifyd` |
 
-The account email is a role address rather than an individual's mailbox, so
-ownership of the listing survives staff changes. It follows the established
-`systems.choice.marketing` convention: each third-party platform the company
-signs into gets its own service identity there, alongside `ads@`,
-`analytics@`, `gbp@`, `gsc@`, `gtm@`, `meta@`, `social@`, `video@`, and
-`websites@`.
+The plugin was submitted under `jaffray`, so that account owns the listing.
+WordPress.org requires the owning account to appear in `Contributors`, and
+the pre-review flagged its absence. Ownership does not follow the
+`Contributors` line; moving it requires asking the plugins team directly.
+`choiceomg` is listed alongside so the company appears on the listing.
+
+`choiceomg`'s account email is a role address rather than an individual's
+mailbox, which is why it exists: an account tied to it survives staff
+changes. It follows the established `systems.choice.marketing` convention,
+where each third-party platform the company signs into gets its own service
+identity, alongside `ads@`, `analytics@`, `gbp@`, `gsc@`, `gtm@`, `meta@`,
+`social@`, `video@`, and `websites@`. That durability applies to the account,
+not to this listing, which sits on `jaffray`.
 
 That subdomain does not resolve to Google. Its MX points at
 `webmail.choice.zone`, so mail for every `@systems.choice.marketing` address
@@ -70,7 +80,7 @@ contributors go on the `Contributors` line, comma-separated, at any time.
    ```
    ./build.sh
    ```
-   This produces `dist/fraud-screening-with-signifyd.zip`
+   This produces `dist/riskloom-fraud-screening-for-signifyd.zip`
    (roughly 48 KB, 16 files). The script refuses to finish if any hidden file
    reaches the package, because WordPress.org rejects those outright.
 3. Upload the zip at <https://wordpress.org/plugins/developers/add/>.
@@ -81,16 +91,49 @@ contributors go on the `Contributors` line, comma-separated, at any time.
    questions.
 6. On approval you receive SVN credentials and a repository at
    `https://plugins.svn.wordpress.org/<slug>/`. Publishing is a commit to
-   `trunk/` plus a copy to `tags/1.2.0/`. The listing goes live once
+   `trunk/` plus a copy to `tags/<version>/`. The listing goes live once
    `Stable tag` in `trunk/readme.txt` points at a tag that exists.
 
-## What reviewers are likely to raise
+## Review history
 
-**The plugin name and slug.** The submitted name leads with a descriptive
-phrase rather than the Signifyd trademark, which is the reason for the
-otherwise unwieldy slug. If a reviewer proposes a different name, keep the
-trademark out of the leading position. Changing the slug after approval is
-not possible, so settle any naming question during review.
+**2026-08-14, submitted as "Fraud Screening with Signifyd" under `jaffray`.**
+
+**2026-08-15, automated pre-review** (ID `P0TDX352313HGN`, flagged TRM)
+raised three items, all answered in 1.2.2.
+
+*The name.* This is the one worth understanding, because the obvious reading
+of it is wrong. WordPress.org enforces two separate naming rules, and the
+1.2.0 rename satisfied only the first. The trademark rule says a mark you do
+not own must not lead the name, and is satisfied by placing it at the end
+after "for" or "with"; "Fraud Screening with Signifyd" passed that. The
+distinctiveness rule says the name must not resemble other listings, judged
+on meaning and pattern rather than character-by-character, and "Fraud
+Screening" is generic enough to sit beside existing entries such as "Antiro
+Order Risk Screening for WooCommerce". Reviewers require a distinguishing
+term at the *front*, and state that adding a generic qualifier such as
+"Advanced" or "Simple" does not satisfy it.
+
+The pattern the review team endorses is `<coined term> <description> for
+<trademark>`, which the directory bears out: "FraudLabs Pro for WooCommerce",
+"Predax Fraud Guard for WooCommerce", "Antiro Order Risk Screening for
+WooCommerce". Hence "Riskloom".
+
+Check any replacement against real companies, not just the plugin directory.
+"Casewire" was drafted and discarded here: no plugin or slug used it, but
+CaseWare International is an active trademark holder that has litigated to
+defend the mark, and a one-letter difference is exactly the lookalike the
+distinctiveness rule targets. Trading one trademark flag for a worse one is
+the failure mode to avoid.
+
+A slug change must be stated explicitly in the reply. Changing it in the code
+and display name is not sufficient, and it cannot be altered after approval.
+
+*Contributors.* The owning account was missing from the list. See "Identity"
+above.
+
+*`load_plugin_textdomain()`.* Removed. See below.
+
+## What reviewers may still raise
 
 **The external service disclosure.** `readme.txt` has an `== External
 services ==` section itemising what is transmitted to Signifyd, when, and
@@ -104,20 +147,25 @@ cannot present a WordPress nonce or cookie, and the HMAC signature check
 inside the handler is the actual authentication. The reasoning is already in
 the code comment at `register_route()`; point a reviewer there if it comes up.
 
-**`load_plugin_textdomain()`.** Plugin Check flags this as discouraged since
-WordPress 4.6. It is the only warning the package produces and it does not
-block submission. The rationale for keeping it is documented at the call
-site: WordPress.org language packs make it redundant for directory installs,
-but it remains the mechanism for someone who adds their own `.mo` to
-`languages/` on a GitHub or manual install.
+**`load_plugin_textdomain()`.** Removed in 1.2.2, and it should not come
+back. Releases up to 1.2.1 kept the call on the theory that someone adding
+their own `.mo` to `languages/` on a manual install still needed it. That was
+wrong: WordPress has loaded translations just in time since 4.6, resolving
+them from the `Domain Path` header for manual installs and from language
+packs for directory installs. With `Requires at least: 6.0`, the call could
+never reach a version that needed it. If a future change reintroduces it,
+Plugin Check will warn and the reviewer will ask again.
 
-That is the complete result, not a summary. Plugin Check 2.0.0 was run
-against the built 1.2.1 package on WordPress 7.0 on 2026-08-15, across every
-category (`general`, `plugin_repo`, `security`, `performance`,
-`accessibility`) with `--include-experimental`. It returned zero errors and
-that one warning. The `trademarks`, `plugin_readme`, `plugin_header_fields`,
-and `prefixing` checks all pass, which covers the naming and metadata
-questions most likely to come up at review.
+**Plugin Check result.** Plugin Check 2.0.0 against the built 1.2.2 package
+on WordPress 7.0, 2026-08-15, across every category (`general`,
+`plugin_repo`, `security`, `performance`, `accessibility`) with
+`--include-experimental`: zero errors and zero warnings. That is the complete
+output, not a summary.
+
+Worth knowing for next time: Plugin Check's `trademarks` check passed on the
+1.2.1 package while the human-facing pre-review flagged the name anyway. The
+tool tests trademark placement; it does not test distinctiveness against
+other listings. A clean Plugin Check is necessary and not sufficient.
 
 ## Optional, worth doing before or soon after launch
 
@@ -152,7 +200,7 @@ listing, which suppresses installs.
    existing installs.
 3. Regenerate the translation template if any string changed:
    ```
-   wp i18n make-pot . languages/fraud-screening-with-signifyd.pot \
+   wp i18n make-pot . languages/riskloom-fraud-screening-for-signifyd.pot \
      --exclude=dist,docs,.remember,.claude
    ```
    The `--exclude` is load-bearing. Without it `make-pot` walks `dist/`, and
@@ -174,9 +222,9 @@ listing, which suppresses installs.
 
    ```bash
    cd ~/dev/wp-pdev && set -a && . ./.env && set +a
-   sudo cp -r ~/dev/woocommerce-signifyd/dist/fraud-screening-with-signifyd \
+   sudo cp -r ~/dev/woocommerce-signifyd/dist/riskloom-fraud-screening-for-signifyd \
      wp-content/plugins/
-   sudo chown -R 33:33 wp-content/plugins/fraud-screening-with-signifyd
+   sudo chown -R 33:33 wp-content/plugins/riskloom-fraud-screening-for-signifyd
 
    docker run --rm --volumes-from wp-pdev-wordpress \
      --network wp-pdev_wp-network -u 33:33 \
@@ -184,11 +232,11 @@ listing, which suppresses installs.
      -e WORDPRESS_DB_PASSWORD="$MYSQL_PASSWORD" \
      -e WORDPRESS_DB_NAME="$MYSQL_DATABASE" \
      wordpress:cli wp --path=/var/www/html plugin check \
-       fraud-screening-with-signifyd \
+       riskloom-fraud-screening-for-signifyd \
        --categories=general,plugin_repo,security,performance,accessibility \
        --include-experimental
 
-   sudo rm -rf wp-content/plugins/fraud-screening-with-signifyd
+   sudo rm -rf wp-content/plugins/riskloom-fraud-screening-for-signifyd
    ```
 
    The `wordpress:cli` image carries no database configuration of its own, so

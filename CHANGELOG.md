@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.2.2 (2026-08-15)
+
+- Renamed the plugin to "Riskloom Fraud Screening for Signifyd", slug
+  `riskloom-fraud-screening-for-signifyd`, in response to the WordPress.org
+  pre-review (ID `P0TDX352313HGN`, flagged TRM). The 1.2.0 name satisfied the
+  trademark-placement rule by putting Signifyd at the end after "with", but
+  failed the separate distinctiveness rule: "Fraud Screening" is generic and
+  sits close to existing listings such as "Antiro Order Risk Screening for
+  WooCommerce". Reviewers require a distinguishing term at the *front* of the
+  name, and state explicitly that adding a generic qualifier does not satisfy
+  it. "Riskloom" is coined, matching the pattern the review team endorses.
+  Verified unused as a plugin slug, absent from the plugin directory, and free
+  of any company or product collision. An earlier candidate, "Casewire", was
+  rejected during this work because CaseWare International is an active
+  trademark holder that has litigated to defend the mark.
+- Removed the `load_plugin_textdomain()` call. WordPress has loaded
+  translations just in time since 4.6, and this plugin's `Requires at least`
+  is 6.0, so the call could never reach a version that needed it. The 1.2.0
+  rationale for keeping it (a site owner adding their own `.mo` on a manual
+  install) was wrong: just-in-time loading resolves the `Domain Path` header
+  for manual installs too. This removes the package's only Plugin Check
+  warning.
+- Added `jaffray` to `Contributors`. WordPress.org requires the owning
+  account to appear there, and the submission was made under that account.
+  `choiceomg` is retained alongside it.
+- Internal naming is unchanged, as at 1.2.0: classes stay `WC_Signifyd_*`,
+  hooks and options stay `wc_signifyd_*`, and the REST namespace stays
+  `wc-signifyd/v1`, so no integration and no registered webhook URL breaks.
+
 ## 1.2.1 (2026-08-15)
 
 - Renamed the plugin in its two admin notices, which still read "Signifyd for

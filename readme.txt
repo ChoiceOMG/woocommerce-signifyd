@@ -1,12 +1,12 @@
-=== Fraud Screening with Signifyd ===
-Contributors: choiceomg
+=== Riskloom Fraud Screening for Signifyd ===
+Contributors: jaffray, choiceomg
 Tags: woocommerce, signifyd, fraud, chargebacks, fraud prevention
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
 WC requires at least: 6.0
 WC tested up to: 11.0
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -116,7 +116,7 @@ and similar) before enabling this plugin on a live store.
 
 == Installation ==
 
-1. Upload the plugin to `wp-content/plugins/fraud-screening-with-signifyd/`, or install it from the Plugins screen.
+1. Upload the plugin to `wp-content/plugins/riskloom-fraud-screening-for-signifyd/`, or install it from the Plugins screen.
 2. Activate it through the Plugins screen. WooCommerce must be active.
 3. Go to **WooCommerce > Settings > Signifyd** and enter your Signifyd team API key.
 4. On the same screen, choose which payment gateways are screened and which order event creates the case.
@@ -175,6 +175,11 @@ for confirmation before submitting.
 
 == Changelog ==
 
+= 1.2.2 =
+* Renamed the plugin to "Riskloom Fraud Screening for Signifyd" so the name leads with a distinctive term rather than a generic description.
+* Removed the `load_plugin_textdomain()` call, which WordPress has not needed since 4.6 and this plugin's minimum of 6.0 can never reach.
+* Added the plugin owner to the contributor list.
+
 = 1.2.1 =
 * Renamed the plugin in both admin notices, which still used the pre-1.2.0 name.
 * Corrected the Plugin URI capitalisation to match the canonical repository path.
@@ -198,6 +203,9 @@ for confirmation before submitting.
 * Initial internal version
 
 == Upgrade Notice ==
+
+= 1.2.2 =
+Renames the plugin. Hooks, options, settings, and the webhook URL are unchanged; no reconfiguration needed.
 
 = 1.2.1 =
 Corrects the plugin name shown in two admin notices. No functional change; no reconfiguration needed.

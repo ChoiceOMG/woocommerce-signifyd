@@ -76,7 +76,7 @@ class WC_Signifyd_Case_Builder {
 		$code = is_string( $code ) ? trim( $code ) : '';
 
 		if ( $code === '' ) {
-			return array( 'U', __( 'AVS mapped from empty to U', 'fraud-screening-with-signifyd' ) );
+			return array( 'U', __( 'AVS mapped from empty to U', 'riskloom-fraud-screening-for-signifyd' ) );
 		}
 
 		if ( isset( $map[ $code ] ) ) {
@@ -84,14 +84,14 @@ class WC_Signifyd_Case_Builder {
 				$map[ $code ],
 				sprintf(
 					/* translators: 1: gateway AVS code, 2: Signifyd AVS code */
-					__( 'AVS mapped from %1$s to %2$s', 'fraud-screening-with-signifyd' ),
+					__( 'AVS mapped from %1$s to %2$s', 'riskloom-fraud-screening-for-signifyd' ),
 					$code,
 					$map[ $code ]
 				),
 			);
 		}
 
-		return array( $code, __( 'AVS mapping not required', 'fraud-screening-with-signifyd' ) );
+		return array( $code, __( 'AVS mapping not required', 'riskloom-fraud-screening-for-signifyd' ) );
 	}
 
 	/**

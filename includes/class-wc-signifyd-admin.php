@@ -69,7 +69,7 @@ class WC_Signifyd_Admin {
 		foreach ( self::order_screen_ids() as $screen_id ) {
 			add_meta_box(
 				'wc-signifyd-score',
-				__( 'Signifyd Score', 'fraud-screening-with-signifyd' ),
+				__( 'Signifyd Score', 'riskloom-fraud-screening-for-signifyd' ),
 				array( __CLASS__, 'render_meta_box' ),
 				$screen_id,
 				'side',
@@ -120,7 +120,7 @@ class WC_Signifyd_Admin {
 		$case_id = $order->get_meta( WC_Signifyd_Orders::META_CASE_ID );
 
 		if ( ! $case_id ) {
-			echo '<p>' . esc_html__( 'No case.', 'fraud-screening-with-signifyd' ) . '</p>';
+			echo '<p>' . esc_html__( 'No case.', 'riskloom-fraud-screening-for-signifyd' ) . '</p>';
 			return;
 		}
 
@@ -133,7 +133,7 @@ class WC_Signifyd_Admin {
 			if ( ! is_array( $case ) ) {
 				printf(
 					'<p>%s</p><p><code>%s</code></p>',
-					esc_html__( 'Signifyd API unavailable.', 'fraud-screening-with-signifyd' ),
+					esc_html__( 'Signifyd API unavailable.', 'riskloom-fraud-screening-for-signifyd' ),
 					esc_html( WC_Signifyd::api()->get_last_error() )
 				);
 				self::render_buttons( $order, $case_id );
@@ -143,7 +143,7 @@ class WC_Signifyd_Admin {
 			$stored = $case;
 		}
 
-		$disposition     = isset( $stored['guaranteeDisposition'] ) ? $stored['guaranteeDisposition'] : __( 'NO GUARANTEE', 'fraud-screening-with-signifyd' );
+		$disposition     = isset( $stored['guaranteeDisposition'] ) ? $stored['guaranteeDisposition'] : __( 'NO GUARANTEE', 'riskloom-fraud-screening-for-signifyd' );
 		$eligible        = ! empty( $stored['guaranteeEligible'] );
 		$team            = isset( $stored['associatedTeam']['teamName'] ) ? $stored['associatedTeam']['teamName'] : '';
 		$adjusted        = isset( $stored['adjustedScore'] ) ? $stored['adjustedScore'] : '';
@@ -155,31 +155,31 @@ class WC_Signifyd_Admin {
 
 		echo '<div class="wc-signifyd-box">';
 
-		echo '<p class="wc-signifyd-score-line"><strong>' . esc_html__( 'Score', 'fraud-screening-with-signifyd' ) . ':</strong> ';
+		echo '<p class="wc-signifyd-score-line"><strong>' . esc_html__( 'Score', 'riskloom-fraud-screening-for-signifyd' ) . ':</strong> ';
 		echo '<span class="wc-signifyd-score">' . esc_html( $score ) . '</span></p>';
 
 		echo '<p class="wc-signifyd-details">';
-		printf( '%s: %s<br/>', esc_html__( 'Disposition', 'fraud-screening-with-signifyd' ), esc_html( $disposition ) );
+		printf( '%s: %s<br/>', esc_html__( 'Disposition', 'riskloom-fraud-screening-for-signifyd' ), esc_html( $disposition ) );
 		printf(
 			'%s: %s<br/>',
-			esc_html__( 'Guarantee eligible', 'fraud-screening-with-signifyd' ),
-			$eligible ? esc_html__( 'TRUE', 'fraud-screening-with-signifyd' ) : esc_html__( 'FALSE', 'fraud-screening-with-signifyd' )
+			esc_html__( 'Guarantee eligible', 'riskloom-fraud-screening-for-signifyd' ),
+			$eligible ? esc_html__( 'TRUE', 'riskloom-fraud-screening-for-signifyd' ) : esc_html__( 'FALSE', 'riskloom-fraud-screening-for-signifyd' )
 		);
 		if ( $team !== '' ) {
-			printf( '%s: %s<br/>', esc_html__( 'Associated team', 'fraud-screening-with-signifyd' ), esc_html( $team ) );
+			printf( '%s: %s<br/>', esc_html__( 'Associated team', 'riskloom-fraud-screening-for-signifyd' ), esc_html( $team ) );
 		}
 		if ( $adjusted !== '' ) {
-			printf( '%s: %s<br/>', esc_html__( 'Adjusted score', 'fraud-screening-with-signifyd' ), esc_html( $adjusted ) );
+			printf( '%s: %s<br/>', esc_html__( 'Adjusted score', 'riskloom-fraud-screening-for-signifyd' ), esc_html( $adjusted ) );
 		}
 		if ( $status !== '' ) {
-			printf( '%s: %s<br/>', esc_html__( 'Status', 'fraud-screening-with-signifyd' ), esc_html( $status ) );
+			printf( '%s: %s<br/>', esc_html__( 'Status', 'riskloom-fraud-screening-for-signifyd' ), esc_html( $status ) );
 		}
-		printf( '%s: %s<br/>', esc_html__( 'Case ID', 'fraud-screening-with-signifyd' ), esc_html( $investigation ) );
+		printf( '%s: %s<br/>', esc_html__( 'Case ID', 'riskloom-fraud-screening-for-signifyd' ), esc_html( $investigation ) );
 		if ( $avs_comment ) {
 			echo esc_html( $avs_comment ) . '<br/>';
 		}
 		if ( $updated_at ) {
-			printf( '<em>%s: %s</em>', esc_html__( 'Updated', 'fraud-screening-with-signifyd' ), esc_html( $updated_at ) );
+			printf( '<em>%s: %s</em>', esc_html__( 'Updated', 'riskloom-fraud-screening-for-signifyd' ), esc_html( $updated_at ) );
 		}
 		echo '</p>';
 
@@ -208,27 +208,27 @@ class WC_Signifyd_Admin {
 		<p class="wc-signifyd-actions">
 			<a href="<?php echo esc_url( 'https://app.signifyd.com/cases/' . rawurlencode( (string) $case_id ) ); ?>"
 			   class="button" target="_blank" rel="noopener noreferrer">
-				<?php esc_html_e( 'View Case', 'fraud-screening-with-signifyd' ); ?>
+				<?php esc_html_e( 'View Case', 'riskloom-fraud-screening-for-signifyd' ); ?>
 			</a>
 			<button type="button" class="button wc-signifyd-action"
 			        data-action="wc_signifyd_refresh_case"
 			        data-caseid="<?php echo esc_attr( $case_id ); ?>"
 			        data-nonce="<?php echo esc_attr( $nonce ); ?>">
-				<?php esc_html_e( 'Refresh', 'fraud-screening-with-signifyd' ); ?>
+				<?php esc_html_e( 'Refresh', 'riskloom-fraud-screening-for-signifyd' ); ?>
 			</button>
 			<button type="button" class="button wc-signifyd-action"
 			        data-action="wc_signifyd_close_case"
-			        data-confirm="<?php echo esc_attr__( 'Close this Signifyd case?', 'fraud-screening-with-signifyd' ); ?>"
+			        data-confirm="<?php echo esc_attr__( 'Close this Signifyd case?', 'riskloom-fraud-screening-for-signifyd' ); ?>"
 			        data-caseid="<?php echo esc_attr( $case_id ); ?>"
 			        data-nonce="<?php echo esc_attr( $nonce ); ?>">
-				<?php esc_html_e( 'Close Case', 'fraud-screening-with-signifyd' ); ?>
+				<?php esc_html_e( 'Close Case', 'riskloom-fraud-screening-for-signifyd' ); ?>
 			</button>
 			<button type="button" class="button button-primary wc-signifyd-action"
 			        data-action="wc_signifyd_purchase_guarantee"
-			        data-confirm="<?php echo esc_attr__( 'Submit this case for a Signifyd guarantee? This is billable on your Signifyd account.', 'fraud-screening-with-signifyd' ); ?>"
+			        data-confirm="<?php echo esc_attr__( 'Submit this case for a Signifyd guarantee? This is billable on your Signifyd account.', 'riskloom-fraud-screening-for-signifyd' ); ?>"
 			        data-caseid="<?php echo esc_attr( $case_id ); ?>"
 			        data-nonce="<?php echo esc_attr( $nonce ); ?>">
-				<?php esc_html_e( 'Purchase Guarantee', 'fraud-screening-with-signifyd' ); ?>
+				<?php esc_html_e( 'Purchase Guarantee', 'riskloom-fraud-screening-for-signifyd' ); ?>
 			</button>
 		</p>
 		<?php
@@ -287,13 +287,13 @@ class WC_Signifyd_Admin {
 		check_ajax_referer( self::NONCE );
 
 		if ( ! current_user_can( 'edit_shop_orders' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Insufficient permissions.', 'fraud-screening-with-signifyd' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Insufficient permissions.', 'riskloom-fraud-screening-for-signifyd' ) ), 403 );
 		}
 
 		$case_id = isset( $_POST['caseid'] ) ? sanitize_text_field( wp_unslash( $_POST['caseid'] ) ) : '';
 
 		if ( $case_id === '' || ! ctype_digit( $case_id ) ) {
-			wp_send_json_error( array( 'message' => __( 'Missing or invalid case id.', 'fraud-screening-with-signifyd' ) ), 400 );
+			wp_send_json_error( array( 'message' => __( 'Missing or invalid case id.', 'riskloom-fraud-screening-for-signifyd' ) ), 400 );
 		}
 
 		return $case_id;
@@ -321,7 +321,7 @@ class WC_Signifyd_Admin {
 			WC_Signifyd_Orders::store_case_data( $order, $case );
 		}
 
-		wp_send_json_success( array( 'message' => __( 'Case refreshed.', 'fraud-screening-with-signifyd' ) ) );
+		wp_send_json_success( array( 'message' => __( 'Case refreshed.', 'riskloom-fraud-screening-for-signifyd' ) ) );
 	}
 
 	/**
@@ -343,7 +343,7 @@ class WC_Signifyd_Admin {
 			$order->add_order_note(
 				sprintf(
 					/* translators: 1: case id, 2: username */
-					__( 'Signifyd case %1$s closed by %2$s.', 'fraud-screening-with-signifyd' ),
+					__( 'Signifyd case %1$s closed by %2$s.', 'riskloom-fraud-screening-for-signifyd' ),
 					$case_id,
 					wp_get_current_user()->user_login
 				)
@@ -359,7 +359,7 @@ class WC_Signifyd_Admin {
 			array(
 				'message' => sprintf(
 					/* translators: %s: case id */
-					__( 'Case %s closed.', 'fraud-screening-with-signifyd' ),
+					__( 'Case %s closed.', 'riskloom-fraud-screening-for-signifyd' ),
 					$case_id
 				),
 			)
@@ -392,7 +392,7 @@ class WC_Signifyd_Admin {
 			$order->add_order_note(
 				sprintf(
 					/* translators: 1: username, 2: disposition */
-					__( 'Signifyd guarantee requested by %1$s: %2$s.', 'fraud-screening-with-signifyd' ),
+					__( 'Signifyd guarantee requested by %1$s: %2$s.', 'riskloom-fraud-screening-for-signifyd' ),
 					wp_get_current_user()->user_login,
 					$disposition
 				)
@@ -413,7 +413,7 @@ class WC_Signifyd_Admin {
 			array(
 				'message' => sprintf(
 					/* translators: %s: guarantee disposition */
-					__( 'Guarantee submitted. Disposition: %s', 'fraud-screening-with-signifyd' ),
+					__( 'Guarantee submitted. Disposition: %s', 'riskloom-fraud-screening-for-signifyd' ),
 					$disposition
 				),
 			)
