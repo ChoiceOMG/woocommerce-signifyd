@@ -12,17 +12,26 @@ the SVN credentials, so these values are settled in advance and must agree:
 | Field | Value |
 |---|---|
 | WordPress.org username | `choiceomg` |
-| WordPress.org account email | `plugins@choice.marketing` |
+| WordPress.org account email | `wordpress@systems.choice.marketing` |
 | `readme.txt` `Contributors:` | `choiceomg` |
 | Plugin header `Author:` | Choice OMG |
 | Plugin header `Author URI:` | `https://choice.marketing` |
 | Plugin header `Plugin URI:` | `https://github.com/ChoiceOMG/woocommerce-signifyd` |
 
-The account email sits on `choice.marketing`, the same domain as `Author URI`,
-and is a role address rather than an individual's mailbox so that ownership of
-the listing survives staff changes. `choice.marketing` mail is Google
-Workspace, so `plugins@` is a group or alias delivering to whoever should read
-reviewer correspondence.
+The account email is a role address rather than an individual's mailbox, so
+ownership of the listing survives staff changes. It follows the established
+`systems.choice.marketing` convention: each third-party platform the company
+signs into gets its own service identity there, alongside `ads@`,
+`analytics@`, `gbp@`, `gsc@`, `gtm@`, `meta@`, `social@`, `video@`, and
+`websites@`.
+
+That subdomain does not resolve to Google. Its MX points at
+`webmail.choice.zone`, so mail for every `@systems.choice.marketing` address
+is delivered by the company's own Mailu server rather than by Workspace. The
+Google-side accounts on that subdomain are Cloud Identity users with no
+mailbox, used only to sign in to platforms that require a Google account.
+Reviewer mail is therefore read through the mail portal, where the mailbox is
+granted to `peter@` and `kaily@` like the rest of the subdomain.
 
 `Plugin URI` uses the canonical `ChoiceOMG` capitalisation. GitHub redirects
 the lowercase form, but the header is copied verbatim into the translation
@@ -35,13 +44,12 @@ returns 404 (rechecked 2026-08-15, along with `choicemarketing`,
 `peterjaffray`, `choice-omg`, and `pjaffray`, all also free). Nothing can be
 uploaded until it exists.
 
-Two steps, both human-only (each needs an interactive confirmation that
-cannot be scripted):
-
-1. Create `plugins@choice.marketing` in Google Workspace admin as a group or
-   alias delivering to the person who should receive reviewer mail.
-2. Register `choiceomg` at <https://login.wordpress.org/register> using that
-   address, and confirm the emailed activation link.
+The mailbox that will receive the activation mail,
+`wordpress@systems.choice.marketing`, exists as of 2026-08-15 and has been
+delivery-tested. What remains is registering `choiceomg` at
+<https://login.wordpress.org/register> using that address and confirming the
+emailed activation link, which needs a human because the confirmation cannot
+be scripted.
 
 Additional contributors can be added to the `Contributors` line later,
 comma-separated.
