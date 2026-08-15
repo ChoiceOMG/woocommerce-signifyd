@@ -6,7 +6,7 @@ Tested up to: 7.0
 Requires PHP: 7.4
 WC requires at least: 6.0
 WC tested up to: 11.0
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -175,6 +175,11 @@ for confirmation before submitting.
 
 == Changelog ==
 
+= 1.2.1 =
+* Renamed the plugin in both admin notices, which still used the pre-1.2.0 name.
+* Corrected the Plugin URI capitalisation to match the canonical repository path.
+* Regenerated the translation template against the corrected strings.
+
 = 1.2.0 =
 * Fixed the AVS mapping comment never being saved, which left that line blank in the order panel on every order.
 * Fixed the duplicate-case guard being ineffective on sites with a persistent object cache, where it could allow two Signifyd cases to be created for one order.
@@ -193,6 +198,9 @@ for confirmation before submitting.
 * Initial internal version
 
 == Upgrade Notice ==
+
+= 1.2.1 =
+Corrects the plugin name shown in two admin notices. No functional change; no reconfiguration needed.
 
 = 1.2.0 =
 Fixes a duplicate-case bug affecting sites with a persistent object cache, and stops error-response bodies reaching the log. Hooks and webhook URL are unchanged; no reconfiguration needed.

@@ -101,8 +101,15 @@ listing, which suppresses installs.
    existing installs.
 3. Regenerate the translation template if any string changed:
    ```
-   wp i18n make-pot . languages/fraud-screening-with-signifyd.pot
+   wp i18n make-pot . languages/fraud-screening-with-signifyd.pot \
+     --exclude=dist,docs,.remember,.claude
    ```
+   The `--exclude` is load-bearing. Without it `make-pot` walks `dist/`, and
+   the previously built copy of the plugin contributes its own strings to the
+   template. When a string has changed since the last build, the template ends
+   up carrying both the old and the new wording, each attributed to a
+   different file. Confirm the result with `grep -c '^#: dist/'`, which must
+   return zero.
 4. Confirm the hook reference table in `docs/ARCHITECTURE.md` still matches
    the code (see `AGENTS.md` for why this matters).
 5. Run `./build.sh`, then Plugin Check against the built package rather than

@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.2.1 (2026-08-15)
+
+- Renamed the plugin in its two admin notices, which still read "Signifyd for
+  WooCommerce" after the 1.2.0 rename. Both are the first thing an operator
+  sees when WooCommerce is inactive or no API key is set, and both led with
+  the trademark placement WordPress.org rejects, so the listing would have
+  contradicted the plugin's own screens at review.
+- Corrected the `Plugin URI` capitalisation to `github.com/ChoiceOMG/...`,
+  matching the canonical repository path instead of relying on GitHub's
+  case-insensitive redirect.
+- Regenerated the translation template against the corrected strings.
+
 ## 1.2.0 (2026-08-08)
 
 - Renamed the plugin to "Fraud Screening with Signifyd" for

@@ -4,7 +4,7 @@ Guidance for AI coding agents and assistants working on this repository.
 
 ## What this project is
 
-Signifyd for WooCommerce is a WordPress plugin that integrates WooCommerce
+Fraud Screening with Signifyd is a WordPress plugin that integrates WooCommerce
 with Signifyd's fraud-screening service. It creates a Signifyd case server-side
 when an eligible order is paid, receives the fraud decision back over a signed
 webhook, and gives store staff a metabox on the order screen to view a case,

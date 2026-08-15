@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name:       Fraud Screening with Signifyd
- * Plugin URI:        https://github.com/choiceomg/woocommerce-signifyd
+ * Plugin URI:        https://github.com/ChoiceOMG/woocommerce-signifyd
  * Description:       Fraud screening for WooCommerce via Signifyd. Creates cases server-side, receives decisions by signed webhook, and lets staff close cases or purchase a guarantee from the order screen.
- * Version:           1.2.0
+ * Version:           1.2.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Choice OMG
@@ -22,7 +22,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /** Plugin version, also used to cache-bust the admin CSS and JS. */
-define( 'WC_SIGNIFYD_VERSION', '1.2.0' );
+define( 'WC_SIGNIFYD_VERSION', '1.2.1' );
 
 /** Absolute path to this file, required by the HPOS compatibility declaration. */
 define( 'WC_SIGNIFYD_FILE', __FILE__ );
@@ -156,7 +156,7 @@ final class WC_Signifyd {
 	 */
 	public static function notice_missing_woocommerce() {
 		echo '<div class="notice notice-error"><p>';
-		esc_html_e( 'Signifyd for WooCommerce requires WooCommerce to be installed and active.', 'fraud-screening-with-signifyd' );
+		esc_html_e( 'Fraud Screening with Signifyd requires WooCommerce to be installed and active.', 'fraud-screening-with-signifyd' );
 		echo '</p></div>';
 	}
 
@@ -182,7 +182,7 @@ final class WC_Signifyd {
 
 		printf(
 			'<div class="notice notice-warning"><p>%s <a href="%s">%s</a></p></div>',
-			esc_html__( 'Signifyd for WooCommerce has no API key configured, so no cases are being created.', 'fraud-screening-with-signifyd' ),
+			esc_html__( 'Fraud Screening with Signifyd has no API key configured, so no cases are being created.', 'fraud-screening-with-signifyd' ),
 			esc_url( admin_url( 'admin.php?page=wc-settings&tab=signifyd' ) ),
 			esc_html__( 'Add your API key', 'fraud-screening-with-signifyd' )
 		);
