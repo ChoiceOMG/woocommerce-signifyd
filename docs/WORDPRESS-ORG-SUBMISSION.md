@@ -1,8 +1,8 @@
 # WordPress.org submission
 
-The plugin passes WordPress.org's Plugin Check with no errors and is packaged
-for submission. One prerequisite is outstanding and has to be done by a human
-before anything can be uploaded: see "Blocker" below.
+The plugin is ready to upload. Version 1.2.1 passes Plugin Check with zero
+errors and one known warning, the submitting account exists, and the package
+builds clean.
 
 ## Identity: what has to match
 
@@ -37,27 +37,31 @@ granted to `peter@` and `kaily@` like the rest of the subdomain.
 the lowercase form, but the header is copied verbatim into the translation
 template and the directory listing, so it should not depend on a redirect.
 
-## Blocker: the WordPress.org account does not exist yet
+## Account status
 
-There is no account under `choiceomg`; `profiles.wordpress.org/choiceomg/`
-returns 404 (rechecked 2026-08-15, along with `choicemarketing`,
-`peterjaffray`, `choice-omg`, and `pjaffray`, all also free). Nothing can be
-uploaded until it exists.
+All three pieces of the identity exist as of 2026-08-15.
 
-Both halves of the identity exist as of 2026-08-15. The mailbox that will
-receive the activation mail, `wordpress@systems.choice.marketing`, is live on
-Mailu and has been delivery-tested end to end, including an external inbound
-message through SES that passed SPF, DKIM, and DMARC. The matching Google
-Cloud Identity user (`WordPress Choice OMG`, org unit `/systems`) exists for
-platforms that require a Google sign-in; it carries no mailbox, as intended.
+The WordPress.org account `choiceomg` was registered against
+`wordpress@systems.choice.marketing`. Registration cannot be scripted: the
+form at <https://login.wordpress.org/register> carries a reCAPTCHA, and its
+"Pineapple is delicious on pizza" checkbox is an anti-bot honeypot that must
+be left unchecked.
 
-What remains is registering `choiceomg` at
-<https://login.wordpress.org/register> using that address and confirming the
-emailed activation link, which needs a human because the confirmation cannot
-be scripted.
+The mailbox is live on Mailu and delivery-tested end to end, including an
+external inbound message through SES that passed SPF, DKIM, and DMARC.
+WordPress.org's own mail arrives cleanly through it.
 
-Additional contributors can be added to the `Contributors` line later,
-comma-separated.
+The matching Google Cloud Identity user (`WordPress Choice OMG`, org unit
+`/systems`) exists for platforms that require a Google sign-in. It carries no
+mailbox, as intended.
+
+One trap worth knowing, because it cost a round trip here. Peter has a
+separate personal WordPress.org account, `jaffray`, dating to 2015. Pointing
+that account's email at `wordpress@systems.choice.marketing` would have
+consumed the address, since WordPress.org allows one account per email, and
+blocked the `choiceomg` registration. `jaffray` stays on
+`peter@choice.marketing`. Both can appear on the listing: additional
+contributors go on the `Contributors` line, comma-separated, at any time.
 
 ## Submission steps
 
@@ -107,6 +111,14 @@ site: WordPress.org language packs make it redundant for directory installs,
 but it remains the mechanism for someone who adds their own `.mo` to
 `languages/` on a GitHub or manual install.
 
+That is the complete result, not a summary. Plugin Check 2.0.0 was run
+against the built 1.2.1 package on WordPress 7.0 on 2026-08-15, across every
+category (`general`, `plugin_repo`, `security`, `performance`,
+`accessibility`) with `--include-experimental`. It returned zero errors and
+that one warning. The `trademarks`, `plugin_readme`, `plugin_header_fields`,
+and `prefixing` checks all pass, which covers the naming and metadata
+questions most likely to come up at review.
+
 ## Optional, worth doing before or soon after launch
 
 **Screenshots.** `readme.txt` has no `== Screenshots ==` section, and the
@@ -154,5 +166,36 @@ listing, which suppresses installs.
 5. Run `./build.sh`, then Plugin Check against the built package rather than
    the repository tree. The tree contains development files that fail the
    check by design.
+
+   There is no local WordPress in this repository, so the check runs against
+   the `wp-pdev` dev site (container `wp-pdev-wordpress`). Stage the built
+   package, run, then remove it, because anything left in that plugins
+   directory is another project's working environment:
+
+   ```bash
+   cd ~/dev/wp-pdev && set -a && . ./.env && set +a
+   sudo cp -r ~/dev/woocommerce-signifyd/dist/fraud-screening-with-signifyd \
+     wp-content/plugins/
+   sudo chown -R 33:33 wp-content/plugins/fraud-screening-with-signifyd
+
+   docker run --rm --volumes-from wp-pdev-wordpress \
+     --network wp-pdev_wp-network -u 33:33 \
+     -e WORDPRESS_DB_HOST=db:3306 -e WORDPRESS_DB_USER="$MYSQL_USER" \
+     -e WORDPRESS_DB_PASSWORD="$MYSQL_PASSWORD" \
+     -e WORDPRESS_DB_NAME="$MYSQL_DATABASE" \
+     wordpress:cli wp --path=/var/www/html plugin check \
+       fraud-screening-with-signifyd \
+       --categories=general,plugin_repo,security,performance,accessibility \
+       --include-experimental
+
+   sudo rm -rf wp-content/plugins/fraud-screening-with-signifyd
+   ```
+
+   The `wordpress:cli` image carries no database configuration of its own, so
+   the four `-e` variables are required; without them every command that
+   touches the database fails with "Error establishing a database connection"
+   even though `core version` succeeds. Install Plugin Check once with
+   `wp plugin install plugin-check --activate` through the same wrapper, and
+   deactivate it afterwards so the dev site is left as it was found.
 6. Tag the release in git, then commit to SVN `trunk/` and copy to
    `tags/<version>/`.
